@@ -19,7 +19,8 @@ import { AddComponent } from './containers/add/add.component';
   ],
   exports: [
     ItemComponent,
-    ListItemsComponent
+    ListItemsComponent,
+    AddComponent
   ]
 })
 export class ItemsModule { }
