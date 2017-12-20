@@ -11,6 +11,10 @@ import { ItemsModule } from './items/items.module';
 
 import { AppComponent } from './app.component';
 import { CollectionService } from './core/services/collection/collection.service';
+import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -21,7 +25,9 @@ import { CollectionService } from './core/services/collection/collection.service
     HomeModule,
     PageNotFoundModule,
     ItemsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AppRoutingModule,
+    RouterModule
   ],
   declarations: [
     AppComponent
@@ -31,4 +37,10 @@ import { CollectionService } from './core/services/collection/collection.service
     AppComponent
   ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(router: Router) {
+    if (!environment.production) {
+      console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+    }
+  }
+}
