@@ -18,7 +18,7 @@ export class AddComponent implements OnInit {
   }
 
   addItem(item: Item): void {
-    this.collection.push(item);
+    this._CollectionService.addItem(item);
   }
 
 }

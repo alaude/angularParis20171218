@@ -11,19 +11,19 @@ export class CollectionService {
     this.collection = COLLECTION;
   }
 
-  getCollection() {
+  getCollection(): Item[] {
     return this.collection;
   }
 
-  addItem() {
-
+  addItem(item: Item): void {
+    this.collection.push(item);
   }
 
   updateItem() {
 
   }
 
-  deleteItem(){
+  deleteItem() {
 
   }
 
