@@ -18,35 +18,39 @@ export class FormComponent implements OnInit {
   @Output() dataItem: EventEmitter<Item> = new EventEmitter();
 
   constructor(private _FormBuilder: FormBuilder) {
-    this.nameCtrl = _FormBuilder.control('toto', [
-      Validators.required,
-      Validators.minLength(5)]);
-    this.refCtrl = _FormBuilder.control('1235', [
-      Validators.required,
-      Validators.minLength(4)]);
-    this.stateCtrl = _FormBuilder.control(State.ALIVRER);
-
-    this.form = _FormBuilder.group({
-      name: this.nameCtrl,
-      ref: this.refCtrl,
-      state: this.stateCtrl
-    });
+    this.createForm();
    }
 
   ngOnInit() {
   }
 
   process(): void {
-    console.log(this.form.value);
-    this.dataItem.emit({
-      name: this.form.get('name').value,
-      reference: this.form.get('ref').value,
-      state: this.stateCtrl.value
-    });
+    this.dataItem.emit(this.form.value);
     this.reset();
   }
 
   reset(): void {
+    this.form.reset();
+    this.stateCtrl.setValue(State.ALIVRER);
+  }
 
+  checkError(fieldName: string): boolean {
+    return this.form.get(fieldName).invalid && this.form.get(fieldName).touched;
+  }
+
+  createForm(): void {
+    this.nameCtrl = this._FormBuilder.control('', [
+      Validators.required,
+      Validators.minLength(5)]);
+    this.refCtrl = this._FormBuilder.control('', [
+      Validators.required,
+      Validators.minLength(4)]);
+    this.stateCtrl = this._FormBuilder.control(State.ALIVRER);
+
+    this.form = this._FormBuilder.group({
+      name: this.nameCtrl,
+      reference: this.refCtrl,
+      state: this.stateCtrl
+    });
   }
 }
