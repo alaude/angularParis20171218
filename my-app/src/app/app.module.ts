@@ -10,6 +10,7 @@ import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { ItemsModule } from './items/items.module';
 
 import { AppComponent } from './app.component';
+import { CollectionService } from './core/services/collection/collection.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent
   ],
-  providers: [],
+  providers: [CollectionService],
   bootstrap: [
     AppComponent
   ]
